@@ -1,47 +1,76 @@
-# Astro Starter Kit: Minimal
+# Boilerplate Astro + Tailwind CSS + shadcn/ui
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+## 🚀 Introducción
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Este boilerplate proporciona una base profesional para iniciar proyectos web modernos utilizando:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Astro** como framework estático/metaframework
+- **Tailwind CSS** para estilos utilitarios
+- **shadcn/ui** para componentes UI accesibles y personalizables
 
-## 🚀 Project Structure
+## ✨ Características
 
-Inside of your Astro project, you'll see the following folders and files:
+- ✅ Configuración preestablecida de Astro + Tailwind
+- ✅ Integración con shadcn/ui para componentes reutilizables
+- ✅ Tipado con TypeScript
+- ✅ Estructura de proyecto organizada
+- ✅ Soporte para Markdown/MDX
+- ✅ Optimización de assets automática
+- ✅ Ruteo basado en archivos
+- ✅ SEO-friendly por defecto
 
-```text
-/
-├── public/
+## 📦 Instalación
+
+1. Clona este repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/astro-tailwind-shadcn-boilerplate.git
+cd astro-tailwind-shadcn-boilerplate
+Instala las dependencias:
+
+bash
+npm install
+# o
+yarn
+# o
+pnpm install
+🛠️ Comandos disponibles
+Comando	Descripción
+npm run dev	Inicia servidor de desarrollo
+npm run build	Construye para producción
+npm run preview	Previsualiza build localmente
+npm run format	Formatea código con Prettier
+npm run lint	Ejecuta ESLint
+npm run astro ...	Ejecuta comandos de Astro CLI
+🎨 Estructura del proyecto
+text
+├── public/              # Assets estáticos
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/      # Componentes reutilizables
+│   ├── layouts/         # Layouts de página
+│   ├── pages/           # Páginas de la aplicación
+│   ├── styles/          # Estilos globales
+│   └── utils/           # Utilidades y helpers
+├── astro.config.mjs     # Configuración de Astro
+├── tailwind.config.cjs  # Configuración de Tailwind
+├── tsconfig.json        # Configuración de TypeScript
 └── package.json
+🧩 Componentes UI con shadcn/ui
+Este proyecto incluye componentes preconfigurados de shadcn/ui. Para añadir más componentes:
+
+bash
+npx shadcn-ui@latest add [component-name]
+Los componentes se añadirán a src/components/ui.
+
+🌍 Variables de entorno
+Crea un archivo .env en la raíz con:
+
+env
+# Ejemplo:
+PUBLIC_SITE_URL=https://mi-sitio.com
+🤝 Contribuciones
+Las contribuciones son bienvenidas. Por favor abre un issue o PR con tus sugerencias.
+
+📄 Licencia
+MIT © [Tu Nombre]
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
