@@ -1,76 +1,94 @@
-# Boilerplate Astro + Tailwind CSS + shadcn/ui
+<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
 ## 🚀 Introducción
 
-Este boilerplate proporciona una base profesional para iniciar proyectos web modernos utilizando:
+Este boilerplate te ofrece una base profesional y moderna para iniciar proyectos web con:
 
 - **Astro** como framework estático/metaframework
 - **Tailwind CSS** para estilos utilitarios
 - **shadcn/ui** para componentes UI accesibles y personalizables
+- **TypeScript** para tipado seguro
 
-## ✨ Características
+## ✨ Características principales
 
-- ✅ Configuración preestablecida de Astro + Tailwind
-- ✅ Integración con shadcn/ui para componentes reutilizables
-- ✅ Tipado con TypeScript
-- ✅ Estructura de proyecto organizada
-- ✅ Soporte para Markdown/MDX
-- ✅ Optimización de assets automática
-- ✅ Ruteo basado en archivos
-- ✅ SEO-friendly por defecto
+- Configuración lista para usar: Astro + Tailwind + shadcn/ui
+- Tipado estricto con TypeScript
+- Estructura modular y escalable
+- Soporte para Markdown/MDX
+- Optimización automática de assets
+- Ruteo basado en archivos
+- SEO optimizado por defecto
+- Scripts para linting y formateo
 
-## 📦 Instalación
+## 📦 Instalación rápida
 
-1. Clona este repositorio:
+1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/astro-tailwind-shadcn-boilerplate.git
-cd astro-tailwind-shadcn-boilerplate
-Instala las dependencias:
+git clone https://github.com/ronaldmindiola/project-starter.git
+cd project-starter
+```
 
-bash
+2. Instala las dependencias:
+
+```bash
 npm install
 # o
 yarn
 # o
 pnpm install
-🛠️ Comandos disponibles
-Comando	Descripción
-npm run dev	Inicia servidor de desarrollo
-npm run build	Construye para producción
-npm run preview	Previsualiza build localmente
-npm run format	Formatea código con Prettier
-npm run lint	Ejecuta ESLint
-npm run astro ...	Ejecuta comandos de Astro CLI
-🎨 Estructura del proyecto
-text
-├── public/              # Assets estáticos
+```
+
+## 🛠️ Comandos útiles
+
+| Comando           | Descripción                           |
+| :---------------- | :------------------------------------ |
+| npm run dev       | Inicia el servidor de desarrollo      |
+| npm run build     | Construye el proyecto para producción |
+| npm run preview   | Previsualiza el build localmente      |
+| npm run format    | Formatea el código con Prettier       |
+| npm run lint      | Ejecuta ESLint                        |
+| npm run astro ... | Ejecuta comandos de Astro CLI         |
+
+## 🎨 Estructura del proyecto
+
+```
+├── public/           # Assets estáticos
 ├── src/
-│   ├── components/      # Componentes reutilizables
-│   ├── layouts/         # Layouts de página
-│   ├── pages/           # Páginas de la aplicación
-│   ├── styles/          # Estilos globales
-│   └── utils/           # Utilidades y helpers
-├── astro.config.mjs     # Configuración de Astro
-├── tailwind.config.cjs  # Configuración de Tailwind
-├── tsconfig.json        # Configuración de TypeScript
+│   ├── components/   # Componentes reutilizables
+│   ├── layouts/      # Layouts de página
+│   ├── pages/        # Páginas de la aplicación
+│   ├── styles/       # Estilos globales
+│   └── utils/        # Utilidades y helpers
+├── astro.config.mjs  # Configuración de Astro
+├── tailwind.config.cjs # Configuración de Tailwind
+├── tsconfig.json     # Configuración de TypeScript
 └── package.json
-🧩 Componentes UI con shadcn/ui
-Este proyecto incluye componentes preconfigurados de shadcn/ui. Para añadir más componentes:
+```
 
-bash
+## 🧩 Componentes UI con shadcn/ui
+
+El proyecto incluye componentes preconfigurados de shadcn/ui. Para agregar más:
+
+```bash
 npx shadcn-ui@latest add [component-name]
-Los componentes se añadirán a src/components/ui.
+```
 
-🌍 Variables de entorno
-Crea un archivo .env en la raíz con:
+Los nuevos componentes se ubican en `src/components/ui`.
 
-env
+## 🌍 Variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```
 # Ejemplo:
 PUBLIC_SITE_URL=https://mi-sitio.com
-🤝 Contribuciones
-Las contribuciones son bienvenidas. Por favor abre un issue o PR con tus sugerencias.
-
-📄 Licencia
-MIT © [Tu Nombre]
 ```
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! Abre un issue o PR con tus sugerencias.
+
+## 📄 Licencia
+
+MIT © [Tu Nombre]
