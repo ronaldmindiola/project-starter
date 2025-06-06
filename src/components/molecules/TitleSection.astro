@@ -1,0 +1,121 @@
+---
+// Define TypeScript interface for props
+interface Props {
+  title: string;
+  subtitle?: string;
+  tagline?: string;
+  align?: "left" | "center" | "right";
+  weight?:
+    | "thin"
+    | "extralight"
+    | "light"
+    | "normal"
+    | "medium"
+    | "semibold"
+    | "bold"
+    | "extrabold"
+    | "black";
+  size?: "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
+  class?: string;
+  shadow?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  tagline,
+  align = "center",
+  weight = "bold",
+  class: myClass,
+  size = "4xl",
+  shadow = false,
+} = Astro.props;
+
+// Mapeo de clases para evitar problemas con Tailwind
+const alignmentClasses = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+};
+
+const weightClasses = {
+  thin: "font-thin",
+  extralight: "font-extralight",
+  light: "font-light",
+  normal: "font-normal",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
+  extrabold: "font-extrabold",
+  black: "font-black",
+};
+
+const sizeClasses = {
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl md:text-5xl",
+  "5xl": "text-4xl md:text-5xl lg:text-6xl",
+  "6xl": "text-5xl md:text-6xl lg:text-7xl",
+};
+---
+
+<section
+  class={`container mx-auto my-8 px-4 py-8 max-w-4xl ${myClass} bg-white dark:bg-gray-800 rounded-lg ${shadow ? "shadow-md" : ""} `}
+>
+  <div class={`${alignmentClasses[align]} space-y-2`}>
+    {
+      title && (
+        <h1
+          class={`
+          text-balance
+          ${sizeClasses[size]}
+          ${weightClasses[weight]}
+          tracking-tight
+          leading-tight md:leading-tighter
+          text-gray-900 dark:text-white
+          [text-wrap:balance]
+        `}
+        >
+          {title}
+        </h1>
+      )
+    }
+
+    {
+      subtitle && (
+        <h2
+          class={`
+          text-balance
+          text-2xl md:text-3xl
+          font-semibold
+          tracking-normal
+          leading-snug
+          text-gray-700 dark:text-gray-300
+        `}
+        >
+          {subtitle}
+        </h2>
+      )
+    }
+
+    {
+      tagline && (
+        <p
+          class={`
+          text-balance
+          text-sm
+          font-normal
+          leading-relaxed
+          tracking-tight
+          text-gray-600 dark:text-gray-400
+          max-w-4xl mx-auto
+        `}
+        >
+          {tagline}
+        </p>
+      )
+    }
+  </div>
+</section>

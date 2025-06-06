@@ -1,6 +1,6 @@
 ---
+import TitleSection from "@/components/molecules/TitleSection.astro";
 import "../styles/global.css";
-import { Button } from "@components/ui/button";
 ---
 
 <html lang="en">
@@ -12,7 +12,12 @@ import { Button } from "@components/ui/button";
     <title>Astro</title>
   </head>
   <body>
-    <h1 class="text-6xl font-black text-neutral-300">Shadcn is Working!</h1>
-    <Button>Button</Button>
+    <TitleSection
+      title="Project Starter"
+      subtitle="Una plantilla moderna para comenzar rápido"
+      tagline="Un starter para proyectos web con Astro, Tailwind CSS y TypeScript con soporte para PWA, SEO y más."
+      align="right"
+      class="text-neutral-600 dark:text-neutral-300"
+    />
   </body>
 </html>
