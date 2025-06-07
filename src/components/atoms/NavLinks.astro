@@ -1,0 +1,31 @@
+---
+import { navLinks } from "@data/data";
+import { Button } from "@ui/button";
+
+// Obtenemos la ruta actual para determinar cuál enlace está activo
+const current = Astro.url.pathname;
+---
+
+<div class="hidden md:block">
+  <div class="ml-10 flex items-baseline space-x-4">
+    {
+      navLinks.map((link) => {
+        const isActive = current === link.href; // Compara la ruta actual con el href del enlace
+        return (
+          <>
+            <Button variant="ghost">
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`${isActive ? "text-orange-500" : ""}`}
+              >
+                {link.name}
+              </a>
+            </Button>
+          </>
+        );
+      })
+    }
+  </div>
+</div>

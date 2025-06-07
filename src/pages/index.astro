@@ -1,8 +1,32 @@
 ---
 import TitleSection from "@/components/molecules/TitleSection.astro";
 import "../styles/global.css";
+import Navigation from "@/components/organisms/Navigation.astro";
 ---
 
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -11,13 +35,14 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
+  <body
+    ><Navigation />
     <TitleSection
       title="Project Starter"
       subtitle="Una plantilla moderna para comenzar rápido"
       tagline="Un starter para proyectos web con Astro, Tailwind CSS y TypeScript con soporte para PWA, SEO y más."
       align="right"
       class="text-neutral-600 dark:text-neutral-300"
-    />
+    />a
   </body>
 </html>

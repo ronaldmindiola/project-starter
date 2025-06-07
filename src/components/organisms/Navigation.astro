@@ -1,0 +1,22 @@
+---
+import Brand from "@components/atoms/Brand.astro";
+import ModeToggle from "@components/atoms/ModeToggle";
+import NavLinks from "@components/atoms/NavLinks.astro";
+interface Props {
+  between?: boolean;
+}
+
+const { between = false } = Astro.props;
+---
+
+<nav class=`flex ${between ? "justify-between":"justify-around"} items-center`>
+  <div class="">
+    <Brand label="Brand" tagline="Solucion al alcance de ti." />
+  </div>
+  <div>
+    <NavLinks />
+  </div>
+  <div>
+    <ModeToggle client:load />
+  </div>
+</nav>
