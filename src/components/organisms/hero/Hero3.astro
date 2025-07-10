@@ -1,0 +1,189 @@
+---
+// Import the necessary dependencies
+import PhotoCollage from "@/components/molecules/Mosaic";
+import Mosaic from "@/components/molecules/Mosaic.astro";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Image } from "astro:assets";
+import { ArrowUpRight } from "lucide-react";
+
+interface Props {
+  badge?: string;
+  title: string;
+  subtitle: string;
+  buttons: {
+    primary: { text: string; url: string };
+    secondary: { text: string; url: string };
+  };
+  images?: Array<{ src: string; alt: string }>;
+  withReview?: boolean;
+  avatars?: string[];
+  starCount?: number;
+  rating?: number;
+  reviews?: number;
+}
+
+// Define props from Astro
+const {
+  badge,
+  title,
+  subtitle,
+  buttons,
+  images,
+  withReview,
+  avatars,
+  starCount,
+  rating,
+  reviews,
+} = Astro.props;
+---
+
+<section class="min-h-[calc(100vh-64px)] flex flex-col justify-center">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-2 gap-6">
+      <div
+        class="order-1 lg:order-1 p-6 flex flex-col items-center text-center lg:items-start lg:text-left"
+      >
+        <div
+          class="flex flex-col items-center text-center lg:items-start lg:text-left"
+        >
+          {
+            badge && (
+              <Badge variant="outline">
+                {badge}
+                <ArrowUpRight className="ml-2 size-4" />
+              </Badge>
+            )
+          }
+          <h1 class="my-6 text-4xl font-bold text-pretty lg:text-6xl">
+            {title}
+          </h1>
+          <p class="mb-8 max-w-xl text-muted-foreground lg:text-xl">
+            {subtitle}
+          </p>
+          <div
+            class="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start"
+          >
+            {
+              buttons.primary && (
+                <Button variant="default">
+                  <a href={buttons.primary.url}>{buttons.primary.text}</a>
+                </Button>
+              )
+            }
+            {
+              buttons.secondary && (
+                <Button variant="secondary">
+                  <a href={buttons.secondary.url}>{buttons.secondary.text}</a>
+                </Button>
+              )
+            }
+          </div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-1 rounded-lg overflow-hidden">
+        <Mosaic
+          maxImages={6}
+          images={[
+            {
+              src: "https://picsum.photos/200/300?random=1",
+              alt: "Descripción de la primera imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=2",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=3",
+              alt: "Descripción de la tercera imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=4",
+              alt: "Descripción de la cuarta imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=5",
+              alt: "Descripción de la Quinta imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=6",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=7",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=8",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=9",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=10",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=11",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+            {
+              src: "https://picsum.photos/200/300?random=12",
+              alt: "Descripción de la segunda imagen",
+            },
+          ]}
+        />
+      </div>
+    </div>
+  </div>
+</section>

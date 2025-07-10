@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ChevronDown, Moon, Sun } from "lucide-react";
 
 import { Button } from "@components/ui/button";
@@ -8,32 +7,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@components/ui/dropdown-menu";
-
-type Theme = "light" | "dark" | "system";
+import { useThemeStore } from "@/store/themeStore";
 
 function ModeToggle() {
-  const [theme, setTheme] = React.useState<Theme>("light");
-
-  // Leer preferencia guardada o sistema
-  React.useEffect(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    if (saved) {
-      setTheme(saved);
-    } else {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(isDark ? "dark" : "light");
-    }
-  }, []);
-
-  // Aplicar tema y guardar preferencia
-  React.useEffect(() => {
-    let isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList.toggle("dark", isDark);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const { theme, setTheme } = useThemeStore();
 
   return (
     <div className="flex items-center justify-center">
@@ -41,9 +18,7 @@ function ModeToggle() {
         <Button
           variant="outline"
           size="icon"
-          onClick={() =>
-            setTheme((prev) => (prev === "light" ? "dark" : "light"))
-          }
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

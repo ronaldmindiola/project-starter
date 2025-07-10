@@ -1,0 +1,102 @@
+---
+// Import the necessary dependencies
+import { Badge } from "@/components/ui/badge";
+import { Image } from "astro:assets";
+import { ArrowUpRight } from "lucide-react";
+
+interface Props {
+  badge?: string;
+  title: string;
+  subtitle: string;
+  buttons?: {
+    primary?: {
+      text: string;
+      url: string;
+    };
+    secondary?: {
+      text: string;
+      url: string;
+    };
+  };
+  image?: {
+    src: string;
+    alt: string;
+  };
+  primaryBtn?: string;
+  primaryBtnURL?: string;
+  secondaryBtn?: string;
+  secondaryBtnURL?: string;
+  withReview?: boolean;
+  avatars?: string[];
+  starCount?: number;
+  rating?: number;
+  reviews?: number;
+}
+
+// Define props from Astro
+const {
+  badge,
+  title,
+  subtitle,
+  buttons,
+  image,
+  primaryBtn,
+  primaryBtnURL,
+  secondaryBtn,
+  secondaryBtnURL,
+  withReview,
+  avatars,
+  starCount,
+  rating,
+  reviews,
+} = Astro.props;
+---
+
+<section class="py-32">
+  <div class="container mx-auto">
+    <div class="grid items-center gap-8 lg:grid-cols-2 px-14">
+      <div
+        class="flex flex-col items-center text-center lg:items-start lg:text-left"
+      >
+        {
+          badge && (
+            <Badge variant="outline">
+              {badge}
+              <ArrowUpRight className="ml-2 size-4" />
+            </Badge>
+          )
+        }
+        <h1 class="my-6 text-4xl font-bold text-pretty lg:text-6xl">
+          {title}
+        </h1>
+        <p class="mb-8 max-w-xl text-muted-foreground lg:text-xl">
+          {subtitle}
+        </p>
+        <div
+          class="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start"
+        >
+          {
+            buttons?.primary && (
+              <a href={buttons.primary.url} class="btn btn-primary">
+                {buttons.primary.text}
+              </a>
+            )
+          }
+          {
+            buttons?.secondary && (
+              <a href={buttons.secondary.url} class="btn btn-outline">
+                {buttons.secondary.text}
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <img
+        src={image?.src}
+        loading="lazy"
+        alt={image?.alt}
+        class="max-h-96 w-full rounded-md object-cover"
+      />
+    </div>
+  </div>
+</section>

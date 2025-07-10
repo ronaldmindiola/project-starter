@@ -1,0 +1,166 @@
+---
+// PhotoCollage.astro - Optimizado
+interface Props {
+  images: Array<{ src: string; alt: string }>;
+}
+
+const { images } = Astro.props;
+
+// Configuración optimizada de posiciones y tamaños
+const imageConfigs = [
+  // Imagen principal - más prominente
+  {
+    position: "top-4 left-1/2 transform -translate-x-1/2",
+    size: "w-60 h-32 sm:w-80 sm:h-36 lg:w-64 lg:h-40",
+    rotation: "rotate-2",
+    zIndex: "z-25",
+    rounded: "rounded-2xl",
+    shadow: "shadow-2xl"
+  },
+  // Segunda imagen - izquierda superior
+  {
+    position: "top-8 left-2 sm:left-4",
+    size: "w-32 h-38 sm:w-44 sm:h-32 lg:w-48 lg:h-36",
+    rotation: "-rotate-3",
+    zIndex: "z-20",
+    rounded: "rounded-xl",
+    shadow: "shadow-xl"
+  },
+  // Tercera imagen - derecha superior
+  {
+    position: "top-8 right-4 sm:right-8",
+    size: "w-32 h-44 sm:w-36 sm:h-48 lg:w-40 lg:h-52",
+    rotation: "rotate-6",
+    zIndex: "z-20",
+    rounded: "rounded-2xl",
+    shadow: "shadow-xl"
+  },
+  // Cuarta imagen - centro izquierda
+  {
+    position: "top-36 left-38 sm:left-16 lg:left-20",
+    size: "w-30 h-20 sm:w-32 sm:h-24 lg:w-36 lg:h-28",
+    rotation: "rotate-2",
+    zIndex: "z-24",
+    rounded: "rounded-lg",
+    shadow: "shadow-lg"
+  },
+  // Quinta imagen - inferior izquierda
+  {
+    position: "bottom-4 left-16 sm:left-8",
+    size: "w-30 h-38 sm:w-40 sm:h-28 lg:w-44 lg:h-32",
+    rotation: "-rotate-6",
+    zIndex: "z-25",
+    rounded: "rounded-xl",
+    shadow: "shadow-xl"
+  },
+  // Sexta imagen - inferior centro
+  {
+    position: "bottom-0 left-16",
+    size: "w-40 h-24 sm:w-48 sm:h-28 lg:w-52 lg:h-32",
+    rotation: "rotate-3",
+    zIndex: "z-20",
+    rounded: "rounded-2xl",
+    shadow: "shadow-lg"
+  },
+  // Séptima imagen - inferior derecha (si existe)
+  {
+    position: "bottom-8 right-8 sm:right-12",
+    size: "w-32 h-28 sm:w-36 sm:h-32 lg:w-40 lg:h-36",
+    rotation: "rotate-8",
+    zIndex: "z-15",
+    rounded: "rounded-xl",
+    shadow: "shadow-xl"
+  },
+  // Octava imagen - circular pequeña (si existe)
+  {
+    position: "bottom-12 right-32 sm:right-40",
+    size: "w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28",
+    rotation: "-rotate-12",
+    zIndex: "z-10",
+    rounded: "rounded-full",
+    shadow: "shadow-lg",
+    border: "border-2 border-white"
+  }
+];
+---
+
+<div class="relative h-80 sm:h-96 lg:h-[500px] w-full overflow-hidden">
+
+
+  <!-- Imágenes dinámicas -->
+  {images?.slice(0, 6).map((image, index) => {
+    const config = imageConfigs[index];
+    if (!config) return null;
+
+    return (
+      <div
+        class={`absolute ${config.position} ${config.size} ${config.rotation} ${config.zIndex} ${config.rounded} ${config.shadow} ${config.border || ''}
+                overflow-hidden cursor-pointer transform transition-all duration-300 ease-out
+                hover:scale-105 hover:rotate-0 hover:z-30 hover:shadow-2xl group`}
+      >
+        <img
+          src={image.src}
+          loading="lazy"
+          alt={image.alt}
+          width="400"
+          height="300"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          decoding="async"
+        />
+        
+        <!-- Overlay sutil al hover -->
+        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+      </div>
+    );
+  })}
+
+  <!-- Indicador de cantidad de imágenes -->
+  {images?.length > 8 && (
+    <div class="absolute bottom-4 left-4 bg-black/70 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm z-40">
+      +{images.length - 8} más
+    </div>
+  )}
+</div>
+
+<style>
+  /* Optimizaciones de rendimiento */
+  img {
+    will-change: transform;
+  }
+  
+  .group:hover {
+    will-change: transform, box-shadow;
+  }
+
+  /* Animación sutil de entrada */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) rotate(0deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--rotation));
+    }
+  }
+
+  .group {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .group:nth-child(1) { animation-delay: 0.1s; --rotation: 2deg; }
+  .group:nth-child(2) { animation-delay: 0.2s; --rotation: -3deg; }
+  .group:nth-child(3) { animation-delay: 0.3s; --rotation: 6deg; }
+  .group:nth-child(4) { animation-delay: 0.4s; --rotation: 12deg; }
+  .group:nth-child(5) { animation-delay: 0.5s; --rotation: -6deg; }
+  .group:nth-child(6) { animation-delay: 0.6s; --rotation: 3deg; }
+  .group:nth-child(7) { animation-delay: 0.7s; --rotation: 8deg; }
+  .group:nth-child(8) { animation-delay: 0.8s; --rotation: -12deg; }
+
+  /* Mejoras para dispositivos móviles */
+  @media (max-width: 640px) {
+    .group:hover {
+      transform: scale(1.02) rotate(0deg) !important;
+    }
+  }
+</style>

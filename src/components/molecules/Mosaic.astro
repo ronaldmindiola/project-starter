@@ -1,0 +1,91 @@
+---
+interface Props {
+  images: Array<{ src: string; alt: string }>;
+  maxImages?: number;
+  borderRadius?: string;
+}
+const { images, maxImages = 20, borderRadius = "rounded-2xl" } = Astro.props;
+
+const margin = "m-1";
+const padding = "p-1";
+---
+
+{
+  images && images.length > 0 && (
+    <>
+      {images.length === 6 ? (
+        <div class="grid grid-cols-3 gap-1">
+          {images.slice(0, 6).map((image, index) => {
+            let imageClasses = "";
+            switch (index) {
+              case 0:
+                imageClasses = "col-span-2 row-span-1"; // Top-left, wide
+                break;
+              case 1:
+                imageClasses = "col-start-3 row-span-2"; // Top-right, tall
+                break;
+              case 2:
+                imageClasses = "col-start-1 row-span-2"; // Middle-left, tall
+                break;
+              case 3:
+                imageClasses = "col-start-2 row-span-1"; // Middle-middle, wide
+                break;
+              case 4:
+                imageClasses = "col-start-2 row-start-3"; // Bottom-middle, 1x1
+                break;
+              case 5:
+                imageClasses = "col-start-3 row-start-3"; // Bottom-right, 1x1
+                break;
+            }
+            return (
+              <div
+                class={`overflow-hidden w-full ${imageClasses} ${borderRadius} ${margin} ${padding} transition-transform duration-300 hover:scale-[1.02] flex items-center justify-center`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div
+          class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-1"
+          style="grid-auto-flow: dense;"
+        >
+          {images.slice(0, maxImages).map((image, index) => {
+            // Alternar proporciones para diseño fluido (original logic)
+            const aspectRatios = [
+              "aspect-[4/3]",
+              "aspect-[3/4]",
+              "aspect-square",
+              "aspect-[16/9]",
+              "aspect-[5/6]",
+            ];
+            const aspect = aspectRatios[index % aspectRatios.length];
+
+            return (
+              <div
+                class={`overflow-hidden w-full ${aspect} ${borderRadius} ${margin} ${padding} transition-transform duration-300 hover:scale-[1.02] flex items-center justify-center`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  )
+}

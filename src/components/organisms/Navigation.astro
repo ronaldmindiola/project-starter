@@ -2,6 +2,7 @@
 import Brand from "@components/atoms/Brand.astro";
 import ModeToggle from "@components/atoms/ModeToggle";
 import NavLinks from "@components/atoms/NavLinks.astro";
+import MobileNav from "@components/organisms/MobileNav";
 interface Props {
   between?: boolean;
 }
@@ -9,14 +10,15 @@ interface Props {
 const { between = false } = Astro.props;
 ---
 
-<nav class=`flex ${between ? "justify-between":"justify-around"} items-center`>
-  <div class="">
+<nav class="flex items-center justify-between p-4">
+  <MobileNav client:load />
+  <div class="hidden md:flex">
     <Brand label="Brand" tagline="Solucion al alcance de ti." />
   </div>
-  <div>
+  <div class="hidden md:flex">
     <NavLinks />
   </div>
   <div>
-    <ModeToggle client:load />
+    <ModeToggle client:visible />
   </div>
 </nav>

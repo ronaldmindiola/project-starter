@@ -6,7 +6,7 @@ import logodark from "@logos/logo-dark.png";
 import logolight from "@logos/logo-light.png";
 ---
 
-<div class="flex items-center">
+<a href="/" class="flex items-center gap-3">
   <div class="dark:hidden">
     <Image
       src={logolight}
@@ -24,7 +24,7 @@ import logolight from "@logos/logo-light.png";
     />
   </div>
   <div>
-    <a href="/" class="text-2xl font-bold">{label}</a>
+    <div class="text-2xl font-bold">{label}</div>
     {tagline && <p class="text-sm text-gray-600">{tagline}</p>}
   </div>
-</div>
+</a>

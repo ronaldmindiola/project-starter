@@ -11,7 +11,10 @@
       "@styles/*": ["./src/styles/*"],
       "@images/*": ["./src/images/*"],
       "@logos/*": ["./src/images/logos/*"],
-      "@data/*": ["./src/data/*"]
+      "@data/*": ["./src/data/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@types/*": ["./src/types/*"]
     },
     "strict": true,
     "jsx": "react-jsx",
