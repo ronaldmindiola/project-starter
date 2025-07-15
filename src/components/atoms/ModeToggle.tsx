@@ -29,7 +29,11 @@ function ModeToggle() {
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="w-10 h-10 p-0">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-10 h-10 p-0"
+            >
               <ChevronDown className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
